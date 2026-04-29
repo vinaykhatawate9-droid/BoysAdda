@@ -1,0 +1,727 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital@1&display=swap');
+
+  .ba-root {
+    font-family: 'DM Sans', sans-serif;
+    background: #0f0e0c;
+    color: #f0ebe3;
+    overflow: hidden;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .ba-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 0.5px solid rgba(240,235,227,0.12);
+    position: relative;
+    z-index: 10;
+  }
+
+  .ba-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: #C85B1A;
+    text-decoration: none;
+  }
+
+  .ba-nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+
+  .ba-nav-links a {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .ba-nav-links a:hover { color: #f0ebe3; }
+
+  .ba-nav-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .ba-icon {
+    width: 18px; height: 18px;
+    color: rgba(240,235,227,0.7);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .ba-icon:hover { color: #f0ebe3; }
+
+  .ba-hero {
+    position: relative;
+    height: 460px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .ba-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1208 0%, #2d1f10 40%, #0f0e0c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ba-hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: repeating-linear-gradient(
+      45deg,
+      #C85B1A 0px, #C85B1A 1px,
+      transparent 1px, transparent 40px
+    );
+  }
+
+  .ba-hero-img-placeholder {
+    width: 340px;
+    height: 440px;
+    background: #2a1c0e;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+
+  .ba-hero-img-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, #0f0e0c 100%);
+  }
+
+  .silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ba-hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 0 32px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .ba-hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 88px;
+    line-height: 0.88;
+    letter-spacing: 2px;
+    color: #f0ebe3;
+    margin: 0;
+  }
+
+  .ba-hero-title span {
+    color: #C85B1A;
+    display: block;
+  }
+
+  .ba-hero-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.4);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .ba-hero-right {
+    text-align: right;
+  }
+
+  .ba-hero-tag {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.35);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .ba-btn {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 11px 26px;
+    border: 0.5px solid rgba(240,235,227,0.4);
+    color: #f0ebe3;
+    cursor: pointer;
+    text-decoration: none;
+    background: transparent;
+    transition: background 0.2s, border-color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+  }
+
+  .ba-btn:hover {
+    background: #C85B1A;
+    border-color: #C85B1A;
+  }
+
+  .ba-btn-primary {
+    background: #C85B1A;
+    border-color: #C85B1A;
+  }
+
+  .ba-strip {
+    display: flex;
+    overflow: hidden;
+    border-top: 0.5px solid rgba(240,235,227,0.1);
+    border-bottom: 0.5px solid rgba(240,235,227,0.1);
+    padding: 10px 0;
+    background: #0f0e0c;
+  }
+
+  .ba-strip-inner {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll 16s linear infinite;
+  }
+
+  .ba-strip-item {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ba-strip-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #C85B1A;
+    display: inline-block;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ba-section {
+    padding: 56px 32px;
+  }
+
+  .ba-section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .ba-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: #f0ebe3;
+    margin: 0;
+  }
+
+  .ba-section-link {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.4);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .ba-section-link:hover { color: #C85B1A; }
+
+  .ba-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .ba-product-card {
+    cursor: pointer;
+  }
+
+  .ba-product-img {
+    height: 220px;
+    background: #1c1510;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .ba-product-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(15,14,12,0.7) 100%);
+  }
+
+  .ba-product-img:hover .ba-product-overlay {
+    opacity: 1;
+  }
+
+  .ba-product-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 12px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .ba-product-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #f0ebe3;
+    margin: 0 0 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .ba-product-price {
+    font-size: 12px;
+    color: rgba(240,235,227,0.5);
+    margin: 0;
+  }
+
+  .ba-product-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background: #C85B1A;
+    color: #f0ebe3;
+    z-index: 3;
+  }
+
+  .ba-cat-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    height: 260px;
+  }
+
+  .ba-cat-card {
+    background: #1c1510;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+  }
+
+  .ba-cat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(10,8,5,0.85) 100%);
+  }
+
+  .ba-cat-card:nth-child(1) {
+    background: linear-gradient(135deg, #2a1c0e 0%, #1a1208 100%);
+  }
+  .ba-cat-card:nth-child(2) {
+    background: linear-gradient(135deg, #1a1208 0%, #241808 100%);
+  }
+  .ba-cat-card:nth-child(3) {
+    background: linear-gradient(135deg, #16160e 0%, #1c1c12 100%);
+  }
+
+  .ba-cat-label {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ba-cat-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #f0ebe3;
+    display: block;
+    line-height: 1;
+  }
+
+  .ba-cat-count {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.4);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .ba-banner {
+    margin: 0 32px;
+    background: #C85B1A;
+    border-radius: 2px;
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ba-banner-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 3px;
+    color: #f0ebe3;
+    margin: 0;
+    line-height: 0.95;
+  }
+
+  .ba-banner-sub {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.7);
+    margin-top: 8px;
+    display: block;
+  }
+
+  .ba-btn-dark {
+    background: #0f0e0c;
+    border-color: #0f0e0c;
+    color: #f0ebe3;
+  }
+
+  .ba-btn-dark:hover {
+    background: #1a1208;
+    border-color: #1a1208;
+  }
+
+  .ba-footer {
+    border-top: 0.5px solid rgba(240,235,227,0.1);
+    padding: 36px 32px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .ba-footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: #C85B1A;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .ba-footer-tagline {
+    font-size: 11px;
+    color: rgba(240,235,227,0.3);
+    letter-spacing: 1px;
+  }
+
+  .ba-footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.4);
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+
+  .ba-footer-col ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ba-footer-col ul li a {
+    font-size: 12px;
+    color: rgba(240,235,227,0.55);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .ba-footer-col ul li a:hover { color: #f0ebe3; }
+
+  .ba-footer-bottom {
+    border-top: 0.5px solid rgba(240,235,227,0.08);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ba-footer-copy {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(240,235,227,0.2);
+  }
+
+  .ba-social {
+    display: flex;
+    gap: 16px;
+  }
+
+  .ba-social a {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,235,227,0.3);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .ba-social a:hover { color: #C85B1A; }
+
+  .prod-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(200,91,26,0.15);
+    position: absolute;
+    bottom: 50%; left: 50%;
+    transform: translate(-50%, 50%);
+  }
+</style>
+
+<div class="ba-root">
+
+  <nav class="ba-nav">
+    <span class="ba-logo">Boys Adda</span>
+    <ul class="ba-nav-links">
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Shirts</a></li>
+      <li><a href="#">Pants</a></li>
+      <li><a href="#">T-Shirts</a></li>
+      <li><a href="#">Accessories</a></li>
+      <li><a href="#">Sale</a></li>
+    </ul>
+    <div class="ba-nav-icons">
+      <svg class="ba-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <svg class="ba-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <svg class="ba-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </div>
+  </nav>
+
+  <section class="ba-hero">
+    <div class="ba-hero-bg">
+      <div class="ba-hero-pattern"></div>
+      <div class="ba-hero-img-placeholder">
+        <svg silhouette width="280" height="420" viewBox="0 0 280 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="140" cy="60" rx="36" ry="38" fill="#3a2510"/>
+          <rect x="82" y="100" width="116" height="160" rx="8" fill="#2a1c0e"/>
+          <rect x="50" y="108" width="40" height="120" rx="6" fill="#2a1c0e"/>
+          <rect x="190" y="108" width="40" height="120" rx="6" fill="#2a1c0e"/>
+          <rect x="90" y="258" width="46" height="140" rx="6" fill="#1e1408"/>
+          <rect x="144" y="258" width="46" height="140" rx="6" fill="#1e1408"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="ba-hero-content">
+      <div>
+        <span class="ba-hero-sub">SS 2025 Collection</span>
+        <h1 class="ba-hero-title">
+          Dress<br>
+          <span>Bold.</span>
+        </h1>
+      </div>
+      <div class="ba-hero-right">
+        <span class="ba-hero-tag">Karnataka's street style</span>
+        <br>
+        <a class="ba-btn ba-btn-primary" onclick="sendPrompt('Show me the Boys Adda shop page with all products')">Shop Now ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ba-strip">
+    <div class="ba-strip-inner">
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Free shipping above ₹999</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Cash on delivery</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Easy returns — 7 days</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> UPI · Card · Net banking</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Pan India delivery</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Free shipping above ₹999</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Cash on delivery</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Easy returns — 7 days</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> UPI · Card · Net banking</span>
+      <span class="ba-strip-item"><span class="ba-strip-dot"></span> Pan India delivery</span>
+    </div>
+  </div>
+
+  <section class="ba-section">
+    <div class="ba-section-header">
+      <h2 class="ba-section-title">New Arrivals</h2>
+      <a class="ba-section-link" onclick="sendPrompt('Show me all new arrival products on Boys Adda')">View all →</a>
+    </div>
+    <div class="ba-products">
+
+      <div class="ba-product-card" onclick="sendPrompt('Tell me more about this oversized shirt from Boys Adda')">
+        <div class="ba-product-img" style="background: linear-gradient(135deg,#2d1f10,#1a1208);">
+          <span class="ba-product-badge">New</span>
+          <svg style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%)" width="80" height="100" viewBox="0 0 80 100">
+            <rect x="15" y="5" width="50" height="75" rx="4" fill="#3a2510"/>
+            <rect x="0" y="10" width="18" height="45" rx="4" fill="#3a2510"/>
+            <rect x="62" y="10" width="18" height="45" rx="4" fill="#3a2510"/>
+            <rect x="25" y="5" width="30" height="8" rx="2" fill="#2a1c0e"/>
+          </svg>
+          <div class="ba-product-overlay">
+            <button class="ba-btn" style="font-size:9px;padding:7px 14px;width:100%">Quick add</button>
+          </div>
+        </div>
+        <p class="ba-product-name">Oversized Linen Shirt</p>
+        <p class="ba-product-price">₹799 <span style="color:rgba(240,235,227,0.25);text-decoration:line-through;font-size:11px;">₹1,099</span></p>
+      </div>
+
+      <div class="ba-product-card" onclick="sendPrompt('Tell me more about this cargo pants from Boys Adda')">
+        <div class="ba-product-img" style="background: linear-gradient(135deg,#1a1a0e,#141410);">
+          <svg style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%)" width="60" height="95" viewBox="0 0 60 95">
+            <rect x="5" y="0" width="50" height="15" rx="3" fill="#2a2a18"/>
+            <rect x="5" y="12" width="23" height="65" rx="3" fill="#2a2a18"/>
+            <rect x="32" y="12" width="23" height="65" rx="3" fill="#2a2a18"/>
+            <rect x="7" y="30" width="14" height="10" rx="2" fill="#1e1e10"/>
+          </svg>
+          <div class="ba-product-overlay">
+            <button class="ba-btn" style="font-size:9px;padding:7px 14px;width:100%">Quick add</button>
+          </div>
+        </div>
+        <p class="ba-product-name">Slim Cargo Pants</p>
+        <p class="ba-product-price">₹1,199</p>
+      </div>
+
+      <div class="ba-product-card" onclick="sendPrompt('Tell me more about this graphic tshirt from Boys Adda')">
+        <div class="ba-product-img" style="background: linear-gradient(135deg,#200e0e,#1a1208);">
+          <span class="ba-product-badge" style="background:#1a1208;color:#C85B1A;border:0.5px solid #C85B1A;">Sale</span>
+          <svg style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%)" width="72" height="80" viewBox="0 0 72 80">
+            <path d="M10 8 L0 25 L14 28 L14 80 L58 80 L58 28 L72 25 L62 8 L46 16 Q36 22 26 16 Z" fill="#3a1010"/>
+            <ellipse cx="36" cy="10" rx="10" ry="6" fill="#2a0e0e"/>
+            <circle cx="36" cy="50" r="8" fill="none" stroke="#C85B1A" stroke-width="1.5"/>
+          </svg>
+          <div class="ba-product-overlay">
+            <button class="ba-btn" style="font-size:9px;padding:7px 14px;width:100%">Quick add</button>
+          </div>
+        </div>
+        <p class="ba-product-name">Graphic Print T-Shirt</p>
+        <p class="ba-product-price">₹499 <span style="color:rgba(240,235,227,0.25);text-decoration:line-through;font-size:11px;">₹699</span></p>
+      </div>
+
+      <div class="ba-product-card" onclick="sendPrompt('Tell me more about this cap from Boys Adda accessories')">
+        <div class="ba-product-img" style="background: linear-gradient(135deg,#0e1a14,#081410);">
+          <svg style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%)" width="80" height="55" viewBox="0 0 80 55">
+            <path d="M10 35 Q40 5 70 35 L72 40 L8 40 Z" fill="#1a2e1e"/>
+            <rect x="5" y="40" width="70" height="8" rx="2" fill="#142210"/>
+            <path d="M2 43 Q40 38 78 43" stroke="#0e1a0e" stroke-width="1.5" fill="none"/>
+          </svg>
+          <div class="ba-product-overlay">
+            <button class="ba-btn" style="font-size:9px;padding:7px 14px;width:100%">Quick add</button>
+          </div>
+        </div>
+        <p class="ba-product-name">Structured Cap</p>
+        <p class="ba-product-price">₹399</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="ba-section" style="padding-top:0;">
+    <div class="ba-section-header">
+      <h2 class="ba-section-title">Shop by Category</h2>
+    </div>
+    <div class="ba-cat-grid">
+      <div class="ba-cat-card" onclick="sendPrompt('Show me all shirts on Boys Adda')">
+        <div class="ba-cat-label">
+          <span class="ba-cat-name">Shirts</span>
+          <span class="ba-cat-count">8 styles</span>
+        </div>
+      </div>
+      <div class="ba-cat-card" onclick="sendPrompt('Show me all pants on Boys Adda')">
+        <div class="ba-cat-label">
+          <span class="ba-cat-name">Pants</span>
+          <span class="ba-cat-count">6 styles</span>
+        </div>
+      </div>
+      <div class="ba-cat-card" onclick="sendPrompt('Show me accessories on Boys Adda')">
+        <div class="ba-cat-label">
+          <span class="ba-cat-name">Accessories</span>
+          <span class="ba-cat-count">6 items</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ba-banner">
+    <div>
+      <h2 class="ba-banner-title">Get 15% off<br>your first order</h2>
+      <span class="ba-banner-sub">Use code ADDA15 at checkout</span>
+    </div>
+    <a class="ba-btn ba-btn-dark" onclick="sendPrompt('How do I apply the ADDA15 discount code on Boys Adda?')">Claim offer ↗</a>
+  </div>
+
+  <footer class="ba-footer" style="margin-top:40px;">
+    <div>
+      <span class="ba-footer-brand">Boys Adda</span>
+      <span class="ba-footer-tagline">Karnataka's favourite men's fashion destination</span>
+    </div>
+    <div class="ba-footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New arrivals</a></li>
+        <li><a href="#">Shirts</a></li>
+        <li><a href="#">Pants</a></li>
+        <li><a href="#">T-Shirts</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div class="ba-footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Track order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Size guide</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="ba-footer-col">
+      <h4>Account</h4>
+      <ul>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">My orders</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <div class="ba-footer-bottom">
+    <span class="ba-footer-copy">© 2025 Boys Adda · Khustagi, Karnataka · All payments in INR</span>
+    <div class="ba-social">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </div>
+
+</div>
